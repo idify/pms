@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HRMS</title>
+  <%= stylesheet_link_tag :application %>
+  <%= javascript_include_tag :application %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	
+<div id="outer">
+  <%=render :partial => "layouts/header" %>
+  <div id="menu">
+	  <p align="right"><strong>Welcome</strong> </p>
+  </div>
+  <div id="content">
+    <div id="tertiaryContent">
+		<%=render :partial => "layouts/rightpanel" %>
+      <div class="xbg"></div>
+    </div>
+    <div id="primaryContentContainer">
+      <div id="primaryContent">
+		  <%=yield%>
+      </div>
+    </div>
+    <!-- left section starts -->
+    <div id="secondaryContent">
+	<b></b><br>
+	<b><a href="<%=root_url%>policies/disciplinary.pdf" target="_blank">Disciplinary Policy</a></b><br>
+	<b><a href="<%=root_url%>policies/leave.pdf" target="_blank">Leave Policy</a></b><br>
+	<b><a href="<%=root_url%>policies/holiday.pdf" target="_blank">Holiday Policy</a></b><br>
+	<b><%=link_to("Holiday Calendar", "#") %></b><br><br>
+	<b><%=link_to("My Team", "#") %></b>
+	<div id="leftpaneldiv" style="padding-top:10px;"></div>
+    </div>
+    <!-- left section ends -->
+    <div class="clear"></div>
+  </div>
+  <div id="footer">
+    <p>&copy; IDIFY Solutions LLP, 2012</p>
+  </div>
+</div>
+
+<style type="text/css">
+.modal-overlay
+{
+	position:fixed;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+	background:#000;
+	opacity:.75;
+	filter: alpha(opacity=75);
+	-moz-opacity: 0.75;
+	z-index:101;
+}
+* html .modal-overlay
+{   
+	position: absolute;
+	height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+html, body, iframe{background-color:transparent !important;}
+.modal-window
+{
+	position:fixed;
+	top:80px;
+	left:50%;
+	margin:0;
+	padding:0;
+	z-index:102;
+}
+* html .modal-window
+{
+	position:absolute;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<%= form_for [@project, @login_detail] do |f| %>
+  <p>
+    <%= f.label :user_name %>
+    <%= f.text_field :user_name %>
+  </p>
+  <p>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.label :git_url %>
+    <%= f.text_field :git_url %>
+  </p>
+  <% if @project.new_record? %>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 8, cols: 5 %>
+  </p>
+  <% end %>
+  <p>
+    <%= f.submit :Submit, class: "btn" %>
+    <%= link_to "Cancel", project_login_details_path(@project), class: "btn" %>
+  </p>
+<% end %>

@@ -1,0 +1,45 @@
+<table class = table "table-bordered"   cellspacing="3" cellpadding="4" >
+<tr>
+  <th>PROJECT NAME</th>
+  <th><%= @project.project_name %></th>
+</tr>
+ <tr class="rowH" height="30">	
+		<th>User Name</th>
+ 		<th>Password</th>	
+		<th>Git Url</th>
+		<th>Description</th>
+		<th>Actions</th>
+ </tr>
+ <tr>
+	<%if @login_details.present? %>
+	  <% @login_details.each do |ld| %>
+	    <tr>
+	      <td><%= ld.user_name %></td>		
+        <td><%= ld.password %> </td>
+        <td><%= ld.git_url %></td>
+        <td><%= ld.description %></td>
+		    <td>
+		      <li class="dropdown" style="list-style:none;" >
+		       <%= link_to "Click Here" , "#",  :'data-toggle' => "dropdown", class: "dropdown-toggle"  %>
+	         <ul class="dropdown-menu" style="list-style:none;">
+            <li>
+              <%= link_to 'Edit', edit_project_login_detail_path(@project, ld)%>
+              <%= link_to 'Delete', project_login_detail_path(@project, ld), :method=> :delete %>
+        	    <%= link_to 'Show', project_login_detail_path(@project, ld) %>
+      	    </li>
+        	 </ul>
+      	 </li>
+      </td>
+  	</tr>
+		<% end %>
+		<% else %>
+		  <td>
+			  No login details available
+		  </td>
+	<% end %>
+	</tr>
+</table>
+<div class="pull-right">
+  <%= link_to "Add Login Details", new_project_login_detail_path(@project), class: "btn" %></td>
+</div>
+

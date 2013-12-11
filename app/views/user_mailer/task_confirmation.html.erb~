@@ -1,0 +1,6 @@
+<p><%= @project_user.user.name %></p>
+
+<p>You are assigned for this project!</p>
+<p>project_start_date : "<%=@project_user.start_date %>" </p>
+<p>project_end_date: "<%=@project_user.end_date %>"</p>
+

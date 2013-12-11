@@ -1,0 +1,38 @@
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" >
+<th>Project Name</th>
+<th colspan=10><%= @project.project_name %></th>
+
+
+
+	<tr>
+		<td colspan=10 align=right><%= link_to "Add Project Users" , new_project_project_user_path(@project)%></td>	
+	</tr>
+
+	
+	<tr class="rowH" height="30">
+    <th>Manager</th>
+		<th>User Id</th>
+		
+		<th>Edit</th>	
+		<th>Delete</th>
+	
+		<th>Show</th>
+	
+	</tr>
+	<% @project_users.each do |pr| %>
+	  <td><%=pr.project.user.email.present? ? pr.project.user.email : "" %></td>
+		<td><%=pr.project.user.email.present? ? pr.project.user.email : "" %></td>
+		
+		
+
+		<td><%= link_to 'Edit', edit_project_project_user_path(@project, pr)%></td>
+		<td><%= link_to 'Delete', project_project_user_path(@project, pr), :method=> :delete %></td>
+ 	
+		<td><%= link_to 'Show', project_project_user_path(@project, pr) %></td>
+	</tr>
+	<%end%>
+	
+
+	
+</table>
+

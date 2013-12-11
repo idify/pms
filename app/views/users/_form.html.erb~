@@ -1,0 +1,43 @@
+
+<div>
+<%= form_for @user  do |f| %>
+ <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+        <div style="clear:both;"></div>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div>
+  <%= f.label :sap_id %>
+  <%= f.text_field :sap_id %>
+</div>
+<div>
+  <%= f.label :isManager %>
+  <%= f.check_box :isManager   %>
+</div>
+<div>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+</div>
+<div>
+ <%= f.label :email %>
+ <%= f.text_field :email %>
+</div>
+
+
+<div>
+
+ <%= f.submit "Submit" %>
+</div>
+<% end %>
+</div>

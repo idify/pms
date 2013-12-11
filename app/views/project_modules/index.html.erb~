@@ -1,0 +1,50 @@
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" style="overflow-x:auto;">
+<th>Project Name</th>
+<th colspan=10><%= @project.project_name %></th>
+
+     <tr>
+	     <td colspan=10 align="right">
+				 <% if (@project.user==current_user) || current_user.isAdmin %>
+						<%= link_to "Add New Module" , new_project_project_module_path(@project) %>
+		     <% end %>
+			 </td>	
+     </tr>
+    
+	
+	<tr class="rowH" height="30">
+		
+		<th>Project Module Name</th>
+    <th>Project Module Description</th>
+		<th>Est. start date</th>
+		<th>Est. end date</th>
+		<th>Actions</th>
+	
+	</tr>
+	<% @project_modules.each do |pm| %>
+		
+		<td><%=pm.project_module_name%></td>
+		<td><%=pm.project_module_description%></td>
+		<td><%=pm.est_start_date%></td>
+		<td><%=pm.est_end_date%></td>
+		
+		
+		<td>
+			<li class="dropdown" style="list-style:none;">
+		      <a href="#" class = "dropdown-toggle" data-toggle = "dropdown">Click Here</a>
+					 <ul class="dropdown-menu" style="list-style:none;">
+             <li><%= link_to 'Edit', edit_project_project_module_path(@project, pm)%></li>
+		         <li><%= link_to 'Delete', project_project_module_path(@project, pm), :method=> :delete %></li>
+ 	           <li><%= link_to 'Show', project_project_module_path(@project, pm) %></li>
+		         <li><%= link_to "View Task", project_project_module_tasks_path(@project, pm)%></li>
+           </ul>
+			 </li>
+		</td>
+               
+		
+	</tr>
+	<%end%>
+	
+
+	
+</table>
+

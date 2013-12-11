@@ -1,0 +1,50 @@
+class TeamsController < ApplicationController
+  def new
+     @project = Project.find(params[:project_id])
+     @team  = @project.build_team
+
+ end
+
+ def create
+    @project = Project.find(params[:project_id])
+    @team  = @project.build_team(params[:team])
+ if @team.save
+      redirect_to project_teams_path(@project), :notice => "Successfully submit team details"
+ else
+      render :new 
+ end
+ end
+
+ def index
+    @project = Project.find(params[:project_id])
+    @team = @project.team
+ end
+
+ def show
+    @project = Project.find(params[:project_id])
+    @team  =@project.team
+ end
+
+ def update
+    @project = Project.find(params[:project_id])
+    @team = @project.team
+ if @team.update_attributes(params[:team])
+      redirect_to project_teams_path(@project)
+ else
+      redirect_to  edit_project_team_path(@project), :notice => "sorry..something is wrong"
+ end
+end
+
+ def destroy
+   @team = Project.find(params[:project_id])
+   team = Team.find(params[:id])  
+   team.destroy
+     redirect_to project_teams_path(:project_id), :notice => "Successfully deleted"
+ end
+
+ def edit
+    @project = Project.find(params[:project_id])
+    @team  =@project.team
+ 
+ end
+end

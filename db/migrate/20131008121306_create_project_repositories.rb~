@@ -1,0 +1,10 @@
+class CreateProjectRepositories < ActiveRecord::Migration
+  def change
+    create_table :project_repositories do |t|
+      t.integer :project_id
+      t.string :documents
+
+      t.timestamps
+    end
+  end
+end

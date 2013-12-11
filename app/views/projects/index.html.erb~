@@ -1,0 +1,48 @@
+<h2>Projects</h2>
+<div style="clear:both;"></div>
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" border="0" style="overflow-x:auto;">
+	<tr>
+		<td colspan=10 align=right><%=link_to("Add New Project", new_project_url())%></td>	
+	</tr>
+	
+	<tr class="rowH" height="30">
+
+		<th>Project Name</th>
+    <th>Manager</th>
+    <th>Description</th>
+		<th>Est. start date</th>
+		<th>Est. end date</th>
+    <th>Additional Details</th>
+		<th>Actions</th>  
+	</tr>
+
+	  <% @projects.each do |p| %>
+	  <tr class = '<%= cycle("rowB", "rowA") %>' >
+		<td><%=p.project_name%></td>
+		<td><%=p.user.email.present? ? p.user.email : "" %></td>
+		<td><%=p.description%></td>	
+		
+		<td><%=p.est_start_date%></td>
+		<td><%=p.est_end_date%></td>
+		<td><%=p.additional_details%></td>
+	
+		<td>
+			<li class="dropdown" style="list-style:none;">
+		      <a href="#" class = "dropdown-toggle" data-toggle = "dropdown">Click Here</a>
+					 <ul class="dropdown-menu" style="list-style:none;">
+						 <li><%= link_to 'Edit', edit_project_path(p)%></li>
+						 <li><%= link_to 'Delete', project_path(p), :method=> :delete %></li>
+	 					 <li><%= link_to 'Show', project_path(p) %></li>
+             <li><%= link_to "View Repository", project_project_repository_index_path(p) %></li>
+             <li><%=link_to "View Team ", project_project_users_path(p) %></li>
+		         <li><%=link_to "View Modules", project_project_modules_path(p) %></li>
+           </ul>
+			</li>
+		</td>
+		
+                		
+	</tr>
+	<%end%>
+</table>
+                
+

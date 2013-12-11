@@ -1,0 +1,10 @@
+<% if flash[:warning] or flash[:notice] or flash[:alert]%>
+	<div id="notice" style ="text-align:center;" class="error">
+		<strong><%= flash[:warning] || flash[:notice] || flash[:alert] %></strong>
+	</div>
+	<script type="text/javascript">
+		$(document).ready( function(){
+			$("#notice").delay(5000).fadeOut();
+		});
+	</script>
+<% end %>

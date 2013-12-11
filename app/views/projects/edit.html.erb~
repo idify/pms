@@ -1,0 +1,62 @@
+ <script>
+ $(function() {
+ $("#datepicker_est_start_date").datetimepicker({format: 'dd/MM/yyyy hh:mm:ss'})
+ $("#datepicker_est_end_date").datetimepicker({format: 'dd/MM/yyyy hh:mm:ss'});
+ 
+ 
+ });
+ </script>
+<div>
+
+	<%= form_for @project  do |f|%>
+	   <% if @project.errors.any? %>
+	      <div class="error_messages">
+	         <h2>Form is invalid</h2>
+           <div style="clear:both;"></div>
+	         <ul>
+	          <% for message in @project.errors.full_messages %>
+	           <li><%= message %></li>
+	          <% end %>
+           </ul>
+        </div>
+     <%end%>
+     
+	    <div>
+		    <%=f.label :Project_Name %>
+		    <%=f.text_field :project_name %>
+	    </div>
+      <div>
+				<%=f.label :Manager %>
+				<%=f.select :user_id, User.all.map {|u| [u.email,u.id]}, {:prompt=>"Select Manager"} %>
+	    </div>        
+	    <div>
+		    <%=f.label :Description %>
+		    <%=f.text_area :description,:rows=> 5  %>
+      </div>
+        
+	    <div class="input-append date" id="datepicker_est_start_date"  data-date="<%=Date.today.strftime('%d-%m-%Y')%>">
+		    <%=f.label :Est_start_date %>	
+        <input id = "project_est_start_date" name ="project[est_start_date]" readonly = "readonly" type = "text" value> 		
+    		<span class="add-on"><i class="icon-th"></i></span>
+	    </div>
+
+	    <div class="input-append date" id="datepicker_est_end_date" data-date="<%=Date.today.strftime('%d-%m-%Y')%>">
+		    <%=f.label :Est_end_date %>		
+    		<input id = "project_est_end_date" name ="project[est_end_date]" readonly = "readonly" type = "text" value>
+    		<span class="add-on"><i class="icon-th"></i></span>
+	    </div><br>
+
+     
+		    <%=f.label :Additional_details %>
+	    	<%=f.text_area :additional_details,:rows=> 5%>
+	    </div>
+    	<div>
+		    <%= f.submit "Submit" %>
+	    </div>
+    <% end %>
+
+</div>
+
+
+
+

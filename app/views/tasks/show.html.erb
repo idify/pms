@@ -1,0 +1,19 @@
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" >
+	<tr>
+		<td><b>User</b></td>
+		<td><%=@task.user.try(:email)%></td>
+	</tr>
+  <tr>
+		<td><b>Task</b></td>
+		<td><%=@task.task%></td>
+	</tr>
+   <tr>
+		<td><b>Est. Start datetime</b></td>
+		<td><%=@task.est_start_date.strftime("%d-%m-%Y %H:%M:%S")%></td>
+	</tr>
+  <tr>
+		<td><b>Est. End datetime</b></td>
+		<td><%=@task.est_end_date.strftime("%d-%m-%Y %H:%M:%S")%></td>
+	</tr>
+ </table>
+               

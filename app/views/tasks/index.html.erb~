@@ -1,0 +1,101 @@
+<script>
+	function task_update(id) {
+		
+		 $.ajax({
+			url:"/projects/<%=@project.id%>/project_modules/<%=@project_module.id %>/tasks/"+id+"/task_update",
+			data: "id="+id,
+			success:function(result){
+    		window.reload();	
+  		}
+		});
+	}
+</script>
+<script>
+	function task_under(id) {
+		
+		 $.ajax({
+			url:"/projects/<%=@project.id%>/project_modules/<%=@project_module.id %>/tasks/"+id+"/task_under",
+			data: "id="+id,
+			success:function(result){
+    		window.reload();	
+  		}
+		});
+	}
+</script>
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" border="0" style="overflow-x:auto;">
+ <tr>
+ <th>Project Name</th>
+ <th colspan=10><%= @project.project_name %></th>
+ </tr>
+ <th>Module Name</th>
+ <th colspan=10><%= @project_module.project_module_name %></th>
+ 
+
+ <tr>
+   <td colspan=10 align=right><%=link_to "ADD NEW TASK" , new_project_project_module_task_path(@project, @project_module)%></td>	
+ </tr>
+
+
+<tr class="rowH" height="30">
+
+<th>User</th>
+<th>Task</th>
+
+<th>Est. start datetime</th>
+<th>Est. end datetime</th>
+<th>Actions</th>
+<th>Task Status</th>
+
+
+</tr>
+<tr>
+
+
+<% @tasks.each do |t| %>
+
+
+    
+   <% if (t.est_end_date.present? ) && (t.est_end_date < current_time) && (t.status == "Pending" or t.status == "Work in progress") %> 
+	       <tr style="background:red;">
+
+     <% elsif (t.est_start_date.present?) && (t.est_start_date < current_time) && (t.status == "Pending") %>
+         <tr style="background:yellow;">
+
+    <% else %>
+	         <tr>
+    <% end %>
+
+         <td><%=t.project_module.project.user.email%></td>
+         <td><%=t.task%></td>
+         <td><%=t.est_start_date%></td>
+         <td><%=t.est_end_date%></td>
+ 
+              <td>
+			           <li class="dropdown" style="list-style:none;">
+		                <a href="#" class = "dropdown-toggle" data-toggle = "dropdown">Click Here</a>
+					            <ul class="dropdown-menu" style="list-style:none;">
+                        <li><%= link_to 'Edit', edit_project_project_module_task_path(@project,@project_module, t)%></li>
+                        <li><%= link_to 'Delete', project_project_module_task_path(@project,@project_module, t), :method=> :delete %></li>
+                        <li><%= link_to 'Show', project_project_module_task_path(@project,@project_module, t)%></li>
+                   
+                         <% if t.status == "Pending" %>
+                          <li><%= link_to 'Start',task_update_project_project_module_task_path(@project.id, @project_module.id, t.id), :class => "btn btn-small active" %></li>
+                            <% elsif t.status == "Work in progress" %>
+                              <li><%= link_to 'Gone for Testing',task_under_project_project_module_task_path(@project.id,@project_module.id,t.id),:class=> "btn btn-small active"%></li>
+                               <% elsif t.status == "Gone for Testing" %> 
+                                </li><%= link_to 'Deploy',task_deploy_project_project_module_task_path(@project.id,@project_module.id,t.id), :class => "btn btn-small active"%>
+                         <% end %>
+                      </ul>
+                  </li>
+             
+                </td>
+                  <td><%=t.status%></td>
+               
+                    
+
+</tr>
+
+
+<%end%>
+</table>
+

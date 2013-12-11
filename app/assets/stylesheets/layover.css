@@ -1,0 +1,104 @@
+.hrms_modal {
+	display: none;
+	left: 50%;
+	/*margin-left: -175px;
+	position: absolute;*/
+	top: 150px;
+	/*width: 350px;*/
+	z-index:12;
+}
+.hrms_modal_other {
+	display: none;
+	left: 50%;
+	margin-left: -225px;
+	position: absolute;
+	top: 150px;
+	/*width: 450px;*/
+	z-index:12;
+}
+/*.hrms_transparent_bg {
+	background-color: #000000;
+	border-radius: 10px 10px 10px 10px;
+	height: 100%;
+	opacity: 0.3;
+	position: absolute;
+	width: 100%;
+}*/
+.hrms_modal_container {
+	background-color: #FFFFFF;
+	border-radius: 8px 8px 8px 8px;
+	margin: 5px;
+	position: relative;
+	text-align: center;
+}
+.hrms_modal_header {
+	background-color: #F1F1F1;
+	background-image: -moz-linear-gradient(center top, #FFFFFF, #F1F1F1);
+	border-bottom: 1px solid #BDBDCC;
+	border-radius: 8px 8px 0 0;
+	box-shadow: 0 -1px #FFFFFF inset;
+	color: #41454C;
+	font-family:arial, Verdana;
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 20px;
+	padding: 13px 0;
+	text-shadow: 0 1px #FFFFFF;
+}
+.hrms_modal_close {
+	background-image: url(/assets/hrms_login_close.png);
+	cursor: pointer;
+	float: right;
+	height: 26px;
+	margin-right: 10px;
+	width: 25px;
+}
+.hrms_modal_container #hrms_forgot_password {
+	display: block;
+	font-size: 10px;
+	margin: 15px 0;
+}
+.hrms_modal_container a {
+	/*color: #205fb8;*/
+    text-decoration: none;
+}
+.hrms_modal_container input[type="text"], .hrms_modal_container input[type="password"]{
+	background-color: #FAFAFA;
+	border: 1px solid #C5CDD8;
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 0 1px 1px 0 #E7E7E7 inset, 0 0 0 1px #F0F0F0 inset;
+	/*color: #69717E;*/
+	font-family: arial;
+    font-size: 14px;
+	width: 300px;
+	margin-right:20px;
+}
+.hrms_modal_container .label-popup{
+	font-size: 14px;
+	padding:0px;
+	margin-right:10px;
+	text-align:left;
+}
+.error-popup{ text-align:left; line-height:12px; color:red; margin-left:5px;}
+.orange_button {
+	background-color:#fcc018;
+    cursor: pointer;
+	height: 49px;
+	padding: 0;
+	width: 300px;
+	color: #41454C;
+	border:none;
+	border-radius:5px;
+	font-size: 24px;
+	font-weight: 700;
+}
+.hrms_modal_container #hrms_login_footer {
+	background-color: #F5F5F5;
+	border-radius: 0 0 8px 8px;
+	border-top: 1px solid #A4A4AB;
+	box-shadow: 0 1px 1px 1px #FFFFFF inset;
+	/*color: #414141;
+    font-size: 16px;*/
+	padding: 15px;
+	margin-top:20px;
+}

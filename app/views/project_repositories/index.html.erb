@@ -1,0 +1,42 @@
+<table class = table "table-bordered"   cellspacing="3" cellpadding="4" >
+<tr>
+  <th>PROJECT NAME</th>
+  <th><%= @project.project_name %></th>
+</tr>
+ <tr class="rowH" height="30">	
+		<th>Document Title</th>
+ 		<th>Attachment</th>	
+		<th>Actions</th>
+ </tr>
+ <tr>
+	<%if @project_repositories.present? %>
+	  <% @project_repositories.each do |pr| %>
+	    <tr>
+	      <td><%= pr.title %></td>		
+        <td><%= link_to File.basename(pr.document.url) , download_doc_project_project_repository_path(@project, pr) %> </td>
+		    <td>
+		      <li class="dropdown" style="list-style:none;" >
+		       <%= link_to "Click Here" , "#",  :'data-toggle' => "dropdown", class: "dropdown-toggle"  %>
+	         <ul class="dropdown-menu" style="list-style:none;">
+            <li>
+              <%= link_to 'Edit', edit_project_project_repository_path(@project, pr)%>
+              <%= link_to 'Delete', project_project_repository_path(@project, pr), :method=> :delete %>
+        	    <%= link_to 'Show', pr.document_url, :target=>"blank" %>
+        	    <%= link_to "Download" , download_doc_project_project_repository_path(@project, pr) %> 
+      	    </li>
+        	 </ul>
+      	 </li>
+      </td>
+  	</tr>
+		<% end %>
+		<% else %>
+		  <td>
+			  No repository available
+		  </td>
+	<% end %>
+	</tr>
+</table>
+<div class="pull-right">
+  <%= link_to "Add Document", new_project_project_repository_path(@project), class: "btn" %></td>
+</div>
+

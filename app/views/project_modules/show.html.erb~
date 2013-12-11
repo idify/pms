@@ -1,0 +1,27 @@
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" >
+
+	
+	
+	<tr>
+		<td><b>Project Module Name</b></td>
+		<td><%=@project_module.project_module_name%></td>
+	</tr>
+	<tr>
+		<td><b>Project Module Description</b></td>
+		<td><%=@project_module.project_module_description%></td>
+	</tr>
+        
+        <tr>
+		<td><b>Est start date</b></td>
+		<td><%=@project_module.est_start_date%></td>
+	</tr>
+        <tr>
+		<td><b>Est end date</b></td>
+		<td><%=@project_module.est_end_date%></td>
+	</tr>
+	
+	
+	
+ </table border>
+ </center>            
+               

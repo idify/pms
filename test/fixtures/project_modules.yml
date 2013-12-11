@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  project_module_name: MyString
+  project_module_description: MyString
+  est_start_date: 2013-10-15
+  est_end_date: 2013-10-15
+  act_start_date: 2013-10-15
+  act_end_date: 2013-10-15
+
+two:
+  project_module_name: MyString
+  project_module_description: MyString
+  est_start_date: 2013-10-15
+  est_end_date: 2013-10-15
+  act_start_date: 2013-10-15
+  act_end_date: 2013-10-15

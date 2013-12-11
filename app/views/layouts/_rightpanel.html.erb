@@ -1,0 +1,31 @@
+<% if session[:useradmin] == 1 %>
+	<%=render :partial => "layouts/adminpanel" %>
+<% end %>
+<h3>Search Employee</h3><div class="clear"></div>
+<ul>
+	<li><%=link_to "Search Employee" , "#" %></li>
+</ul>
+<h3>Profile & Personnel</h3><div class="clear"></div>
+<ul>
+	<li><%= link_to "Profile", "#" %></li>
+	<li><%= link_to "Family Detail", "#" %></li>
+	<li><%= link_to "Address Detail", "#" %></li>
+	<li><%=link_to "Education", "#" %></li>
+	<li><%=link_to "Experience", "#" %></li>
+	<li><%=link_to "Skills", "#" %></li>
+	<li><%=link_to "Certification", "#" %></li>
+</ul>
+<h3>Leaves</h3><div class="clear"></div>
+<ul>
+	<li><%=link_to "Apply Leaves", "#" %></li>
+	<li><%=link_to "Applied Leaves", "#" %></li>
+	<li></li>
+</ul>
+<h3>Finance</h3><div class="clear"></div>
+<ul>
+	<li><%= link_to("Salaries", "#" )%></li>
+	<li><%= link_to("Tax Declarations", "#" )%></li>
+	<li><%= link_to "Manage Bills", "#" %> </li>
+</ul>
+<!--li><%= link_to("Home", "#") %></li>
+<li><%=link_to("View Additional Details", "#") %></li-->

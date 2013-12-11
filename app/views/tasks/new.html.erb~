@@ -1,0 +1,66 @@
+ <script>
+ $(function() {
+ 
+ $("#datepicker_est_start_date").datetimepicker({format: 'dd/MM/yyyy hh:mm:ss'})
+ $("#datepicker_est_end_date").datetimepicker({format: 'dd/MM/yyyy hh:mm:ss'});
+ 
+ 
+ });
+ </script>
+
+<div>
+	<%= form_for [@project,@project_module,@task] do |f|%>
+
+	   <% if @task.errors.any? %>
+	      <div class="error_messages">
+	         <h2>Form is invalid</h2>
+            <div style="clear:both;"></div>
+
+	<ul>
+	    <% for message in @task.errors.full_messages %>
+	      <li><%= message %></li>
+	      <% end %>
+	</ul>
+
+</div>
+<%end%>
+
+	
+	<div>
+		<%=f.label "User" %>
+		<%=f.select :user_id, User.all.map {|u| [u.email,u.id]} %>
+
+	</div>
+         <div>
+		<%=f.label "Task" %>
+		<%=f.text_field :task %>
+
+	</div>
+  
+	
+	<div class="input-append date" id="datepicker_est_start_date"  data-date="<%=Date.today.strftime('%d-%m-%Y')%>">
+		<%=f.label :est_start_datetime %>
+		
+    		<input id = "task_est_start_date" name ="task[est_start_date]" readonly = "readonly" type = "text" value>
+    		<span class="add-on"><i class="icon-th"></i></span>
+	</div>
+	<div class="input-append date" id="datepicker_est_end_date" data-date="<%=Date.today.strftime('%d-%m-%Y')%>">
+		<%=f.label :est_end_datetime %>
+		
+    		<input id = "task_est_end_date" name ="task[est_end_date]" readonly = "readonly" type = "text" value>
+    		<span class="add-on"><i class="icon-th"></i></span>
+	</div><br>
+
+       
+       
+       
+	<div>
+		<%=f.submit "Submit" %>
+	</div>
+<%end%>
+</div>
+
+
+
+
+

@@ -1,0 +1,68 @@
+class ProjectsController < ApplicationController
+ load_and_authorize_resource 
+ 
+ def new
+ 	@project  = Project.new
+ end
+
+ def create
+	
+ 	user_project = Project.where(params[:project][:user_id]).first
+  	if user_project.present?
+    	#p = Project.where("est_start_date >= ? and est_end_date <= ? and user_id = ?", params[:project][:est_start_date],params[:project]   [:est_end_date], params[:project][:user_id])
+    	p = Project.where("date(est_start_date) >=? and date(est_end_date) <=? and user_id=?", params[:project][:est_start_date],    user_project.est_end_date.to_date, params[:project][:user_id])
+
+    	if p.present?
+      	flash[:notice] = "Project Rejected: can't assign new project on same alotted dates"
+        	redirect_to projects_path 
+       else
+       	@project  = Project.new(project_params)
+         if @project.save
+         		redirect_to projects_path(@project), :notice => "Successfully submit Project details"
+          	 else
+         	    render :new
+         end
+      end
+   else
+        @project  = Project.create(project_params)
+         if @project.save
+         	redirect_to projects_path(@project), :notice => "Successfully submit Project details"
+					else
+						render :new 
+				end
+			end
+	end
+
+  def index
+  	@projects = Project.all
+  end
+
+  def show
+  	@project  = Project.find(params[:id])
+  end
+
+  def update
+  	@project = Project.find(params[:id])
+    	if  @project.update_attributes(project_params)
+      	redirect_to projects_path, :notice => "Updated Successfully"
+       else
+      	 render :edit , :notice => "sorry..something is wrong"
+      end
+  end
+
+  def destroy
+  	project = Project.find(params[:id])  
+    project.destroy
+    	redirect_to projects_path
+  end
+
+  def edit
+  	@project = Project.find(params[:id])
+  end
+
+  private
+  	def project_params
+     	params.require(:project).permit(:description,:project_name,:est_start_date,:est_end_date,:act_start_date,:act_end_date,
+			:additional_details, :user_id, :manager)
+    end
+end 

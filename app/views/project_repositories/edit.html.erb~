@@ -1,0 +1,35 @@
+<%= form_for [@project, @project_repository] do |f| %>
+
+  <% if @project_repository.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+        <div style="clear:both;"></div>
+
+
+       <ul>
+         <% for message in @project_repository.errors.full_messages %>
+           <li><%= message %></li>
+         <% end %>
+      </ul>
+    </div>
+
+    <%end%>
+  <div>
+
+    <p><%=f.label :name %>
+       <%=f.text_field :name %>
+    </p>
+    <p>
+      <%=f.file_field :document%>
+    </p>
+    <p><%= f.label :remote_document_url, " Document URL" %>
+     <%= f.text_field :remote_document_url %>
+    </p>
+       <%=f.submit "Submit" %>
+  </div>
+<%end%>
+
+
+
+
+

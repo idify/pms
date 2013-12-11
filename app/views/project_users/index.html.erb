@@ -1,0 +1,37 @@
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" >
+  <tr>
+    <th>Project Name</th>
+    <td><%= @project.project_name %></td>
+  </tr>
+  <tr>
+    <th>Manager</th>
+    <td><%= @project.user.name %></td>  
+  </tr>
+	<tr class="rowH" height="30">
+  	<th>User Name</th>
+  	<th>Email</th>
+  	<th>Start Date</th>
+  	<th>End Date</th>
+		<th>Edit</th>	
+		<th>Delete</th>
+		<th>Show</th>
+	</tr>
+	<% if @project_users.present? %>
+	  <% @project_users.each do |pr| %>
+	    <tr>
+	      <td><%=pr.user.email.present? ? pr.user.name : "" %></td>
+		    <td><%=pr.user.email.present? ? pr.user.email : "" %></td>
+		    <td><%= pr.start_date %></td>
+		    <td><%= pr.end_date %></td>
+		    <td><%= link_to 'Edit', edit_project_project_user_path(@project, pr)%></td>
+		    <td><%= link_to 'Delete', project_project_user_path(@project, pr), :method=> :delete %></td>
+		    <td><%= link_to 'Show', project_project_user_path(@project, pr) %></td>
+	    </tr>
+	  <% end %>	
+	<% end %>
+</table>
+<div class="pull-right">
+	<%= link_to "Add Project Users" , new_project_project_user_path(@project), :class=> "btn"%>
+</div>
+
+

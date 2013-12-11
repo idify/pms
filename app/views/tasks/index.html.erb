@@ -1,0 +1,56 @@
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" border="0" style="overflow-x:auto;">
+ <tr>
+   <th>Project Name</th>
+   <th colspan=10><%= @project.project_name %></th>
+ </tr>
+ <tr>
+   <th>Module Name</th>
+   <th colspan=10><%= @project_module.project_module_name %></th>
+ </tr>
+ 
+<tr class="rowH" height="30">
+  <th>User</th>
+  <th>Task</th>
+  <th>Est. start datetime</th>
+  <th>Est. end datetime</th>
+  <th>Actions</th>
+  <th>Task Status</th>
+</tr>
+<tr>
+<% @tasks.each do |t| %>
+   <% if  (t.status == 0 or t.status == 1) %> 
+      <tr style="background:red;">
+   <% elsif (t.status == 0) %>
+      <tr style="background:yellow;">
+    <% else %>
+	     <tr>
+    <% end %>
+         <td><%= t.user.try(:email) %></td>
+         <td><%= t.task %></td>
+         <td><%= t.est_start_date.strftime("%d-%m-%Y %H:%M:%S") %></td>
+         <td><%= t.est_end_date.strftime("%d-%m-%Y %H:%M:%S") %></td>
+          <td>
+	           <li class="dropdown" style="list-style:none;">
+              <a href="#" class = "dropdown-toggle" data-toggle = "dropdown">Click Here</a>
+			            <ul class="dropdown-menu" style="list-style:none;">
+                    <li><%= link_to 'Edit', edit_project_project_module_task_path(@project,@project_module, t) %></li>
+                    <li><%= link_to 'Delete', project_project_module_task_path(@project,@project_module, t), :method=> :delete %></li>
+                    <li><%= link_to 'Show', project_project_module_task_path(@project,@project_module, t)%></li>
+                    <% if t.status == 0 %>
+                      <li><%= link_to 'Start', task_update_project_project_module_task_path(@project.id, @project_module.id, t.id, status: 1), :class => "btn btn-small active" %></li>
+                    <% elsif t.status == 1 %>
+                      <li><%= link_to TASK_STATUS[2], task_update_project_project_module_task_path(@project.id, @project_module.id, t.id, status: 2),:class=> "btn btn-small active"%></li>
+                    <% elsif t.status == 2 %> 
+                      </li><%= link_to TASK_STATUS[3], task_update_project_project_module_task_path(@project.id, @project_module.id, t.id, status: 3), :class => "btn btn-small active"%>
+                     <% end %>
+                  </ul>
+              </li>
+            </td>
+            <td><%= TASK_STATUS[t.status] %></td>
+      </tr>
+<% end %>
+</table>
+<div class="pull-right">
+   <%=link_to "ADD NEW TASK" , new_project_project_module_task_path(@project, @project_module), class: "btn" %>
+ </div>
+

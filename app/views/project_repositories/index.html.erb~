@@ -1,0 +1,32 @@
+<table class = table "table-bordered"   cellspacing="3" cellpadding="4" >
+
+<th>PROJECT NAME</th>
+<th colspan=2><%= @project.project_name %></th>
+          
+        <tr>
+	<td colspan=2 align=right><%= link_to "Add Document", new_project_project_repository_path(@project) %></td>
+	</tr>
+	
+         <tr class="rowH" height="30">	
+		<th>Name</th>
+ 		<th>Edit</th>	
+		<th>Delete</th>
+	
+		<th>Show</th>
+	
+	</tr>
+		<%if @project_repository.present? %>
+    <td><%= @project_repository.name%></td>		
+		<td><%= link_to 'Edit', edit_project_project_repository_path(@project, @project_repository.id)%></td>
+		<td><%= link_to 'Delete', project_project_repository_path(@project,@project_repository.id), :method=> :delete %></td>
+ 	
+		<td><%= link_to 'Show', @project_repository.document_url(), :target=>"blank" %></td>
+		<% else %>
+		<td>
+			No repository available
+		</td>
+		<% end %>
+	</tr>
+
+</table>
+

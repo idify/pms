@@ -1,0 +1,20 @@
+<script>	
+	$(function() {
+	$('#calendar').fullCalendar({
+    events: [
+		<%@tasks.each do |task|%>
+        {
+            title  : '<%= task.task %>',
+            start  : '<%= task.act_start_date %>',
+						end :    '<%= task.act_end_date %>'
+        },
+       
+        
+			<% end %>
+    ]
+});
+});
+</script>
+<div id="calendar">
+	
+</div>

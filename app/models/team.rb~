@@ -1,0 +1,6 @@
+class Team < ActiveRecord::Base
+   attr_accessible :project_id, :user_id, :start_date, :end_date
+has_many :user
+belongs_to :project
+
+end

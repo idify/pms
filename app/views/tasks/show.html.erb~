@@ -1,0 +1,26 @@
+
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" >
+	
+	
+	<tr>
+		<td><b>User</b></td>
+		<td><%=@task.project_module.project.user.email%></td>
+	</tr>
+        <tr>
+		<td><b>Task</b></td>
+		<td><%=@task.task%></td>
+	</tr>
+     
+        <tr>
+		<td><b>Est. Start datetime</b></td>
+		<td><%=@task.est_start_date%></td>
+	</tr>
+        <tr>
+		<td><b>Est. End datetime</b></td>
+		<td><%=@task.est_end_date%></td>
+	</tr>
+      
+	
+ </table border>
+ </center>            
+               

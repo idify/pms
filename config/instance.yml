@@ -1,0 +1,10 @@
+---
+instance:
+   task_status:
+    0: Pending
+    1: Work in progress
+    2: Gone for Testing
+    3: Deployed
+   permission:
+    1: Read
+    2. Read/Write

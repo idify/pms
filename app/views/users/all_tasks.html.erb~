@@ -1,0 +1,69 @@
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" border="0" style="overflow-x:auto;">
+ <tr>
+ <th>Project Name</th>
+ <th colspan=10></th>
+ </tr>
+ <th>Module Name</th>
+ <th colspan=10></th>
+ 
+<tr class="rowH" height="30">
+
+<th>User</th>
+<th>Task</th>
+
+<th>Est. start datetime</th>
+<th>Est. end datetime</th>
+<th>Actions</th>
+<th>Task Status</th>
+
+
+</tr>
+<tr>
+
+
+<% @tasks.each do |t| %>
+
+
+    
+   <% if (t.est_end_date.present? ) && (t.est_end_date < current_time) && (t.status == "Pending" or t.status == "Work in progress") %> 
+	       <tr style="background:red;">
+
+     <% elsif (t.est_start_date.present?) && (t.est_start_date < current_time) && (t.status == "Pending") %>
+         <tr style="background:yellow;">
+
+    <% else %>
+	         <tr>
+    <% end %>
+
+         <td><%=t.project_module.project.user.email%></td>
+         <td><%=t.task%></td>
+         <td><%=t.est_start_date%></td>
+         <td><%=t.est_end_date%></td>
+ 
+              <td>
+			              <li style="list-style:none;">
+		                    <ul style="list-style:none;">
+					            
+                        <% if t.status == "Pending" %>
+                          <li><%= link_to 'Start',status_update_path(@user.id, t.id, "Work in progress"), :class => "btn btn-small active" %></li>
+                            <% elsif t.status == "Work in progress" %>
+                              <li><%= link_to 'Gone for Testing',status_update_path(@user.id, t.id, "Under testing"),:class=> "btn btn-small active"%></li>
+                               <% elsif t.status == "Under testing" %> 
+                                </li><%= link_to 'Deploy',status_update_path(@user.id, t.id, "Deployed"),:class=> "btn btn-small active"%></li>
+                         <% end %>
+                         </ul>
+                      </li>
+                      
+                 
+            
+               
+                  <td><%=t.status%></td>
+              </td>
+                    
+
+</tr>
+
+
+<%end%>
+</table>
+

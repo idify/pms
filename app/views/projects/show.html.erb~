@@ -1,0 +1,37 @@
+<table class = table "table-bordered"   cellspacing="0" cellpadding="0" >
+ 
+	
+	
+	<tr>
+		<td><b>Project Name</b></td>
+		<td><%=@project.project_name%></td>
+	</tr>
+        <tr>
+		<td><b>Manager</b></td>
+		<td><%=@project.user.email%></td>
+	</tr
+	<tr>
+		<td><b>Description</b></td>
+		<td><%=@project.description%></td>
+	</tr>
+        
+  <tr>
+		<td><b>Est start date</b></td>
+		<td><%=@project.est_start_date%></td>
+	</tr>
+  <tr>
+		<td><b>Est end date</b></td>
+		<td><%=@project.est_end_date%></td>
+	</tr>
+	
+  <tr>
+		<td><b>Additional Details</b></font></td>
+		<td><%=@project.additional_details%></td>
+	</tr>
+	
+	
+	
+ </table border>
+           
+               
+	    
